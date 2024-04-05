@@ -16,11 +16,11 @@ const UniversitySelection = () => {
   const [selectedUniversity, setSelectedUniversity] = useState(null);
   const [customUniversityName, setCustomUniversityName] = useState("");
 
-  const handleUniversityChange = evt => {
+  const handleUniversityChange = (evt) => {
     setSelectedUniversity(evt.target.value);
   };
 
-  const handleCustomUniversityChange = evt => {
+  const handleCustomUniversityChange = (evt) => {
     setCustomUniversityName(evt.target.value);
   };
 
@@ -28,10 +28,7 @@ const UniversitySelection = () => {
     async function fetchUniversities() {
       try {
         const retrievedUniversities = await getUniversities();
-        if (
-          retrievedUniversities.status === 200 &&
-          retrievedUniversities.statusText === "OK"
-        ) {
+        if (retrievedUniversities.status === 200) {
           setUniversities(retrievedUniversities.data);
         }
       } catch (error) {
@@ -77,7 +74,7 @@ const UniversitySelection = () => {
     try {
       const response = await storeUniversityName(data);
 
-      if (response.status === 200 && response.statusText === "OK") {
+      if (response.status === 200) {
         setAuth({
           ...auth,
           user: {
