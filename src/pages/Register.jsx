@@ -26,7 +26,7 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [auth, setAuth] = useAuth();
 
-  const handleRegister = async evt => {
+  const handleRegister = async (evt) => {
     evt.preventDefault();
 
     if (!full_name) {
@@ -65,13 +65,19 @@ const Register = () => {
       return;
     }
 
-    const data = { full_name, email, password, confirmPassword, last_activity: new Date().toISOString() };
+    const data = {
+      full_name,
+      email,
+      password,
+      confirmPassword,
+      last_activity: new Date().toISOString(),
+    };
 
     try {
       const response = await register(data);
       console.log(response);
 
-      if (response.status === 200 && response.statusText === "OK") {
+      if (response.status === 200) {
         setAuth({
           ...auth,
           user: response.data.user,
@@ -104,7 +110,7 @@ const Register = () => {
     }
   };
 
-  const handleGoogleSignup = async googleUser => {
+  const handleGoogleSignup = async (googleUser) => {
     try {
       const response = await googleSignIn({
         access_token: googleUser.getAuthResponse().id_token,
@@ -158,7 +164,7 @@ const Register = () => {
               <input
                 type="text"
                 value={full_name}
-                onChange={evt => setFullName(evt.target.value)}
+                onChange={(evt) => setFullName(evt.target.value)}
                 className="register__name"
                 name="name"
                 id="name"
@@ -172,7 +178,7 @@ const Register = () => {
               <input
                 type="email"
                 value={email}
-                onChange={evt => setEmail(evt.target.value)}
+                onChange={(evt) => setEmail(evt.target.value)}
                 name="email"
                 className="register__email"
                 id="email"
@@ -185,7 +191,7 @@ const Register = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
-                onChange={evt => setPassword(evt.target.value)}
+                onChange={(evt) => setPassword(evt.target.value)}
                 className="register__password"
                 name="password"
                 id="password"
@@ -205,7 +211,7 @@ const Register = () => {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 value={confirmPassword}
-                onChange={evt => setConfirmPassword(evt.target.value)}
+                onChange={(evt) => setConfirmPassword(evt.target.value)}
                 className="register__confirmPassword"
                 name="confirmPassword"
                 id="confirmPassword"
@@ -243,7 +249,7 @@ const Register = () => {
               clientId="939129256680-qe0149eq0b5g9oc14cj3lc78inbue6rq.apps.googleusercontent.com"
               buttonText="Continue with Google"
               onSuccess={handleGoogleSignup}
-              onFailure={error =>
+              onFailure={(error) =>
                 console.error("Google Sign-In failed:", error)
               }
               cookiePolicy="single_host_origin"

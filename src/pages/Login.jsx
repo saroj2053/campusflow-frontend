@@ -25,7 +25,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleFormSubmit = async evt => {
+  const handleFormSubmit = async (evt) => {
     evt.preventDefault();
 
     if (!email) {
@@ -50,7 +50,8 @@ const Login = () => {
 
     try {
       const response = await login(data);
-      if (response.status === 200 && response.statusText === "OK") {
+
+      if (response.status === 200) {
         setAuth({
           ...auth,
           user: response.data.user,
@@ -72,14 +73,12 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = async googleUser => {
+  const handleGoogleLogin = async (googleUser) => {
     try {
       const response = await googleSignIn({
         access_token: googleUser.getAuthResponse().id_token,
-        last_activity: new Date().toISOString()
+        last_activity: new Date().toISOString(),
       });
-
-      console.log(response);
 
       setAuth({
         ...auth,
@@ -88,7 +87,6 @@ const Login = () => {
       });
 
       const dedicatedRole = response.data.data.role;
-      console.log(dedicatedRole);
 
       if (response.data.data.university_name) {
         if (dedicatedRole === "USER") {
@@ -119,7 +117,7 @@ const Login = () => {
                 className="login__email"
                 placeholder="Email"
                 value={email}
-                onChange={evt => setEmail(evt.target.value)}
+                onChange={(evt) => setEmail(evt.target.value)}
               />
               <MdEmail className="mailIcon" />
             </div>
@@ -129,7 +127,7 @@ const Login = () => {
                 className="login__password"
                 placeholder="Password"
                 value={password}
-                onChange={evt => setPassword(evt.target.value)}
+                onChange={(evt) => setPassword(evt.target.value)}
               />
               {showPassword ? (
                 <FaEye className="eyeIcon" onClick={togglePasswordViewChange} />
@@ -160,7 +158,7 @@ const Login = () => {
               buttonText="Continue with Google"
               className="google__loginButton"
               onSuccess={handleGoogleLogin}
-              onFailure={error =>
+              onFailure={(error) =>
                 console.error("Google Sign-In failed:", error)
               }
               cookiePolicy="single_host_origin"
