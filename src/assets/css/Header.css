@@ -1,0 +1,148 @@
+.header {
+  background: #ececec;
+  border-radius: 0;
+  position: fixed;
+  width: 100%;
+  padding: 0 2%;
+  z-index: 9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.header__brandImage {
+  width: 180px;
+  object-fit: contain;
+}
+
+
+.header__links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.header__link {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+}
+
+.header__link:hover {
+  color: #439a86;
+  filter: drop-shadow(0 0 30px #439a86);
+}
+
+.header__right {
+  display: flex;
+}
+
+.header__signup-btn {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  background: #347986;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  margin-left: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+.header__signup-btn:hover {
+  background: #036d83;
+  color: #fff;
+}
+
+.login__link,
+.register__link {
+  text-decoration: none;
+}
+
+.login__link {
+  color: #242424;
+}
+
+.login__link:hover {
+  color: #439a86;
+  filter: drop-shadow(0 0 30px #439a86);
+}
+
+.register__link {
+  color: #fff;
+}
+
+.header__menu-icons {
+  list-style-type: none;
+  display: none;
+}
+
+
+@media screen and (max-width: 979px) {
+
+
+  .header__menu-open-icon {
+    display: block;
+  }
+
+  .header__contents {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transition: 500ms;
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .header__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .header__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .header__signup-btn {
+    width: 60%;
+    text-align: center;
+    margin: auto;
+  }
+
+  .responsive-nav {
+    transform: translateY(100vh);
+  }
+
+  .header__menu-close-icon {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
